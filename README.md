@@ -1,70 +1,253 @@
-# Getting Started with Create React App
+# ES7 Snippets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+rafce (arrow func with export)
+rfce (regular func with export )
+same as the file name
+react auto import
+uncheck
+React Snippets › Settings: Import React On Top
 
-## Available Scripts
+## JSX RULES
 
-In the project directory, you can run:
+return only one single element
 
-### `npm start`
+can also return sections,divs and other things overall
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Fragments - Lets us group elements without adding extra nodes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+return <React.Fragment>...rest of the return </React.Fragment>
 
-### `npm test`
+this also has shorthand which is - <>...rest of the return </>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#CamelCase property naming convention
 
-### `npm run build`
+return (
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  <div tabIndex={1}>
+    <button onClick={myFunction}>click me</button>
+    <label htmlFor='name'>Name</label>
+    <input readOnly={true} id='name' />
+  </div>
+)
+// in html
+<div tabindex="1">
+    <button onclick="myFunction()">click me</button>
+    <label for='name'>Name</label>
+    <input readonly id='name' />
+</div>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+class becomes ClassName
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All elemnts should be self closing in react , otherwise we get a error
 
-### `npm run eject`
+### Nest Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+yes,we can nest components normally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function Greeting() {
+return (
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<div>
+<Person />
+<Message />
+</div>
+);
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const Person = () => <h2>john doe</h2>;
+const Message = () => {
+return <p>this is my message</p>;
+};
 
-## Learn More
+#### CSS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+create index.css in src
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+then use
+import "./index.css";
+to import css
 
-### Code Splitting
+## Local Images in React (Public Folder)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-external images (hosted on a different server) - we just need the url
 
-### Analyzing the Bundle Size
+-local images (public folder) - less performant
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-local images (src folder) -
+better solution for assets,since under the hood they get optimized.
 
-### Making a Progressive Web App
+## inline styles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+stype prop
+{} - means we are going back to js land
 
-### Advanced Configuration
+values are typed in between ''
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```js
+const Author = () => (
+  <h4 style={{ color: "#617d98", fontSize: "0.75rem", marginTop: "0.5rem" }}>
+    hmm web dev hmm
+  </h4>
+);
+```
 
-### Deployment
+-same css rules still apply i.e (inline vs external)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-alternative option
 
-### `npm run build` fails to minify
+```js
+const inlineHeadignStyles = {
+  color: "#61798d",
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+there is no right or wrong , comes to preferences
+
+### JSX - JavaScript
+
+### props
+
+different values to be rendered for a same component
+only displayed when provided
+
+### Multiple Aprroaches to Access Props
+
+Access Props - Multiple Approaches
+there is no right or wrong - again preference !!!
+
+destructuring in Vanilla JS
+
+saves time/typing
+
+pull out the properties
+
+don't need to reference object anymore
+
+```js
+const someObject = {
+  name: "john",
+  job: "developer",
+  location: "florida",
+};
+
+console.log(someObject.name);
+const { name, job } = someObject;
+console.log(job);
+```
+
+no need for all the props.propName
+destructure inside component
+
+```js
+const Book = (props) => {
+  const { img, title, author } = props;
+  return (
+    <article className="book">
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author} </h4>
+    </article>
+  );
+};
+```
+
+destructure in function parameters (in our case props)
+if you have console.log(props) - it won't be defined
+
+```js
+const Book = ({ img, title, author }) => {
+  return (
+    <article className="book">
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author} </h4>
+    </article>
+  );
+};
+```
+
+### children prop
+
+when you want something specific for only one component we use children prop
+
+we add children keyword in the list then we use whatever we want to display in the particular component in between the brackets
+
+```js
+function BookList() {
+  return (
+    <section className="booklist">
+      <Book
+        author={firstBook.author}
+        title={firstBook.title}
+        img={firstBook.img}
+      >
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
+          repudiandae inventore eos qui animi sed iusto alias eius ea sapiente.
+        </p>
+        <button>click me</button>
+      </Book>
+      <Book
+        author={secondBook.author}
+        title={secondBook.title}
+        img={secondBook.img}
+      />
+    </section>
+  );
+}
+
+const Book = ({ img, title, author, children }) => {
+  // rest of the logic
+};
+const Book = (props) => {
+  const { img, title, author, children } = props;
+  console.log(props);
+  return (
+    <article className="book">
+      <img src={img} alt={title} />
+      <h2>{title}</h2>
+      <h4>{author} </h4>
+      {children}
+    </article>
+  );
+};
+```
+
+### key prop
+
+typically it is going to be a id
+
+Events - Fundamentals
+Vanilla JS
+const btn = document.getElementById('btn');
+
+```js
+btn.addEventListener("click", function (e) {
+  // access event object
+  // do something when event fires
+});
+```
+
+similar approach
+element, event, function
+again camelCase
+
+```js
+const EventExamples = () => {
+  const handleButtonClick = () => {
+    alert("handle button click");
+  };
+  return (
+    <section>
+      <button onClick={handleButtonClick}>click me</button>
+    </section>
+  );
+};
+```
+
+React Events
+no need to memorize them(idea is the same)
+most common
+onClick (click events)
+onSubmit (submit form )
+onChange (input change )
