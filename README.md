@@ -1,4 +1,8 @@
-# ES7 Snippets
+# My First React Projet
+https://helloreact12.netlify.app
+Made by learning all concepts one by one
+
+## ES7 Snippets
 
 rafce (arrow func with export) |
 rfce (regular func with export ) |
