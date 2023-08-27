@@ -1,10 +1,10 @@
 # ES7 Snippets
 
-rafce (arrow func with export)
-rfce (regular func with export )
-same as the file name
-react auto import
-uncheck
+rafce (arrow func with export) |
+rfce (regular func with export ) |
+same as the file name |
+react auto import |
+uncheck |
 React Snippets › Settings: Import React On Top
 
 ## JSX RULES
@@ -19,7 +19,7 @@ return <React.Fragment>...rest of the return </React.Fragment>
 
 this also has shorthand which is - <>...rest of the return </>
 
-#CamelCase property naming convention
+## CamelCase property naming convention
 
 return (
 
@@ -44,20 +44,21 @@ All elemnts should be self closing in react , otherwise we get a error
 
 yes,we can nest components normally
 
+```js
 function Greeting() {
-return (
-
-<div>
-<Person />
-<Message />
-</div>
-);
+  return (
+    <div>
+      <Person />
+      <Message />
+    </div>
+  );
 }
 
 const Person = () => <h2>john doe</h2>;
 const Message = () => {
-return <p>this is my message</p>;
+  return <p>this is my message</p>;
 };
+```
 
 #### CSS
 
@@ -108,11 +109,13 @@ there is no right or wrong , comes to preferences
 ### props
 
 different values to be rendered for a same component
+
 only displayed when provided
 
 ### Multiple Aprroaches to Access Props
 
 Access Props - Multiple Approaches
+
 there is no right or wrong - again preference !!!
 
 destructuring in Vanilla JS
@@ -136,6 +139,7 @@ console.log(job);
 ```
 
 no need for all the props.propName
+
 destructure inside component
 
 ```js
@@ -152,6 +156,7 @@ const Book = (props) => {
 ```
 
 destructure in function parameters (in our case props)
+
 if you have console.log(props) - it won't be defined
 
 ```js
@@ -168,7 +173,7 @@ const Book = ({ img, title, author }) => {
 
 ### children prop
 
-when you want something specific for only one component we use children prop
+when you want something specific for only one component we use children prop.
 
 we add children keyword in the list then we use whatever we want to display in the particular component in between the brackets
 
@@ -217,8 +222,8 @@ const Book = (props) => {
 
 typically it is going to be a id
 
-Events - Fundamentals
-Vanilla JS
+Events - Fundamentals |
+Vanilla JS |
 const btn = document.getElementById('btn');
 
 ```js
@@ -228,9 +233,9 @@ btn.addEventListener("click", function (e) {
 });
 ```
 
-similar approach
-element, event, function
-again camelCase
+-similar approach
+-element, event, function
+-again camelCase
 
 ```js
 const EventExamples = () => {
@@ -245,9 +250,55 @@ const EventExamples = () => {
 };
 ```
 
-React Events
-no need to memorize them(idea is the same)
-most common
-onClick (click events)
-onSubmit (submit form )
-onChange (input change )
+### React Events
+
+-no need to memorize them(idea is the same)
+-most common
+-onClick (click events)
+-onSubmit (submit form )
+-onChange (input change )
+
+### Mind Grenade
+
+-Components are independent by default
+
+### Prop Drilling
+
+-passing props down through multiple components
+-We can only pass props down
+
+### error
+
+If you have () in js , the function is going to be invoked by itself , event on the click of the button
+
+fix 1-
+come up with a differnt function and then invoke the function you want within the new function
+
+fix 2-
+() => getBook(id)
+
+### Import and Export
+
+One component in file - Default Export
+multiple - Named Export
+
+we can only have one default export per file
+
+### Local Images (src folder)
+
+```js
+import img1 from "./images/book1.jpg";
+import img2 from "./images/book2.jpg";
+import img3 from "./images/book3.jpg";
+```
+
+-downside , if we have 100 images we have to import 100 images manually
+
+-better performance because optimized
+
+-images must be in thee src folder , wont work if its in the public folder
+
+### Build Production Ready Application
+
+- stop server by pressing ctrl + c
+- run "npm run build"
